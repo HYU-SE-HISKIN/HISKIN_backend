@@ -2,28 +2,44 @@ package hiskin_hiskin_backend.domain;
 
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@Table(name= "users")
+@Table(name = "users")  // "users" 테이블과 매핑
 @Getter
+@Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_seq", updatable = false)
-    private Long user_seq;
-    @Column(name ="id", updatable = false)
-    private String id;
-    @Column(name="password", updatable = false)
+    @Column(name="id", updatable = false)
+    private Long id;
+
+    @Column(name="name", nullable = false)
+    private String name;
+
+    @Column(name="gender", nullable = false)
+    private String gender;
+
+    @Column(name="birthdate", nullable = false)
+    private String birthdate;
+
+    @Column(name="nickname", nullable = false)
+    private String nickname;
+
+    @Column(name="userId", nullable = false)
+    private String userId;  // 사용자 아이디
+
+    @Column(name="password", nullable = false)
     private String password;
 
     @Builder
-    public User(String id, String password){
-        this.id=id;
-        this.password=password;
+    public User(String name, String gender, String birthdate, String nickname, String userId, String password) {
+        this.name = name;
+        this.gender = gender;
+        this.birthdate = birthdate;
+        this.nickname = nickname;
+        this.userId = userId;
+        this.password = password;
     }
 }
