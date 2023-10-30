@@ -18,7 +18,7 @@ public class User {
     @Column(name="name", nullable = false)
     private String name;
 
-    @Column(name="gender", nullable = false)
+    @Column(name="gender", nullable = true)
     private String gender;
 
     @Column(name="birthdate", nullable = false)
@@ -32,6 +32,9 @@ public class User {
 
     @Column(name="password", nullable = false)
     private String password;
+
+    @Column(name = "skinType", nullable = true)
+    private String skinType;
 
     @Builder
     public User(String name, String gender, String birthdate, String nickname, String userId, String password) {

@@ -28,7 +28,7 @@ public class UserController {
             userRepository.save(newUser);
 
             // 성공적인 응답 반환
-            return new ResponseEntity<>("Registration successful", HttpStatus.OK);
+            return new ResponseEntity<>("Registration successful@@@", HttpStatus.OK);
         } catch (Exception e) {
             // 실패한 응답 반환
             return new ResponseEntity<>("Registration failed: " + e.getMessage(), HttpStatus.BAD_REQUEST);
