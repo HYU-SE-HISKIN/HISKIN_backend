@@ -22,9 +22,9 @@ public class UserController {
     public ResponseEntity<String> registerUser(@RequestBody UserRegistrationRequest registrationRequest) {
         try {
             // 회원가입 로직: 사용자를 생성하고 저장
-            User newUser = new User(registrationRequest.getUserId(), registrationRequest.getPassword(),
-                    registrationRequest.getName(), registrationRequest.getNickname(),
-                    registrationRequest.getGender(), registrationRequest.getBirthdate());
+            User newUser = new User(registrationRequest.getName(), registrationRequest.getGender(),
+                    registrationRequest.getBirthdate(), registrationRequest.getNickname(),
+                    registrationRequest.getUserId(), registrationRequest.getPassword());
             userRepository.save(newUser);
 
             // 성공적인 응답 반환
