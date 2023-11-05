@@ -20,7 +20,7 @@ public class UserController {
     private UserRepository userRepository;
 
     @Autowired
-    //private LoggedInUserHolder loggedInUserHolder;
+    private LoggedInUserHolder loggedInUserHolder;
 
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody UserRegistrationRequest registrationRequest) {
@@ -46,7 +46,7 @@ public class UserController {
 
             if (user != null && user.getPassword().equals(loginRequest.getPassword())) {
                 // 로그인 성공 시 사용자 아이디를 LoggedInUserHolder 빈에 저장
-                //loggedInUserHolder.setLoggedInUserId(loginRequest.getUserId());
+                loggedInUserHolder.setLoggedInUserId(loginRequest.getUserId());
 
                 return new ResponseEntity<>("Login successful", HttpStatus.OK);
             } else {

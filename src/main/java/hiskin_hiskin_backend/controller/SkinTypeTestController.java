@@ -22,7 +22,7 @@ public class SkinTypeTestController {
     @Autowired
     private UserService userService;
     @Autowired
-    //private LoggedInUserHolder loggedInUserHolder;
+    private LoggedInUserHolder loggedInUserHolder;
 
     private Integer question1_1Response; // 1-1번 질문에 대한 응답
     private Integer question1_2Response; // 1-2번 질문에 대한 응답
@@ -150,7 +150,7 @@ public class SkinTypeTestController {
             // combinedSkinType 값이 있을 때 반환
             if (combinedSkinType != null) {
                 // 스킨테스트 완료 후 사용자 아이디를 LoggedInUserHolder 빈에서 가져와서 업데이트
-                //String loggedInUserId = loggedInUserHolder.getLoggedInUserId();
+                String loggedInUserId = loggedInUserHolder.getLoggedInUserId();
                 //userService.updateUserSkinType(loggedInUserId, combinedSkinType);
 
                 return ResponseEntity.ok()
