@@ -151,7 +151,7 @@ public class SkinTypeTestController {
             if (combinedSkinType != null) {
                 // 스킨테스트 완료 후 사용자 아이디를 LoggedInUserHolder 빈에서 가져와서 업데이트
                 String loggedInUserId = loggedInUserHolder.getLoggedInUserId();
-                //userService.updateUserSkinType(loggedInUserId, combinedSkinType);
+                userService.updateUserSkinType(loggedInUserId, combinedSkinType);
 
                 return ResponseEntity.ok()
                         .contentType(MediaType.APPLICATION_JSON)
