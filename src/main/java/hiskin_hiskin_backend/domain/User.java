@@ -30,7 +30,7 @@ public class User {
     @Column(name="password", nullable = false)
     private String password;
 
-    @Column(name = "skinType", nullable = true)
+    @Column(name = "skinType", nullable = true) // null값 허용
     private String skinType;
 
     @Builder
