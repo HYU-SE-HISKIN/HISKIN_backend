@@ -12,7 +12,7 @@ import java.util.Map;
 
 @Service
 public class CosmeticsCrawlerService {
-    public Map<String, String> scrapeProductInfo() {
+    public Map<String, String> scrapeProductInfo(String searchKeyword) {
         // Selenium WebDriver 설정
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\kim26\\hiskin_backend\\src\\main\\resources\\static\\chromedriver.exe");
         ChromeOptions options = new ChromeOptions();
@@ -29,7 +29,7 @@ public class CosmeticsCrawlerService {
 
             // 검색어 입력
             WebElement searchBox = driver.findElement(By.id("query"));
-            searchBox.sendKeys("닥터지");
+            searchBox.sendKeys(searchKeyword);
 
             // 검색 버튼 클릭
             WebElement searchButton = driver.findElement(By.id("searchSubmit"));
@@ -55,7 +55,5 @@ public class CosmeticsCrawlerService {
         }
 
         return productInfo; // productInfo를 반환
-
-
     }
 }

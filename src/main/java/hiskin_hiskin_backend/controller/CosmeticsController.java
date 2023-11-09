@@ -1,6 +1,11 @@
 package hiskin_hiskin_backend.controller;
 
+import hiskin_hiskin_backend.domain.User;
+import hiskin_hiskin_backend.repository.UserRepository;
 import hiskin_hiskin_backend.service.CosmeticsCrawlerService;
+import hiskin_hiskin_backend.service.UserService;
+import hiskin_hiskin_backend.util.LoggedInUserHolder;
+import hiskin_hiskin_backend.util.SkinTypeSearchKeywords;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @RestController
@@ -15,11 +21,40 @@ import java.util.Map;
 public class CosmeticsController {
     @Autowired
     private CosmeticsCrawlerService cosmeticsCrawlerService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private LoggedInUserHolder loggedInUserHolder;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/cosmetics")
     public ResponseEntity<Map<String, String>> searchCosmetics() {
-        Map<String, String> productInfo = cosmeticsCrawlerService.scrapeProductInfo();
-        return new ResponseEntity<>(productInfo, HttpStatus.OK);
+        try {
+            // Get the logged-in user's skin type
+            String loggedInUserId = loggedInUserHolder.getLoggedInUserId();
+            User user = userRepository.findByUserId(loggedInUserId);
+
+            if (user != null && user.getSkinType() != null) {
+                String skinType = user.getSkinType();
+
+                // Get the search keyword based on the user's skin type
+                String searchKeyword = SkinTypeSearchKeywords.valueOf(skinType).getKeyword();
+
+                // Use the search keyword to get product information
+                Map<String, String> productInfo = cosmeticsCrawlerService.scrapeProductInfo(searchKeyword);
+
+                return new ResponseEntity<>(productInfo, HttpStatus.OK);
+            } else {
+                Map<String, String> errorResponse = new HashMap<>();
+                errorResponse.put("error", "User not found or skin type not set");
+                return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception e) {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("error", "Error: " + e.getMessage());
+            return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
 
@@ -29,10 +64,5 @@ selenium 라이브러리 사용방법:
 2. 크롬 버전이랑 일치하는 크롬드라이버 설치
 3. 크롬드라이버를 static 파일에 넣고 그 경로를 CosmeticsCrawlerService 클래스 path에 입력
 
-현재 크롤링이 잘 되는지 test 하기 위해 임의로 "닥터지" 라는 검색어를 입력했을 때 productName이랑 imageUrl이 json형식으로
-잘 출력되는지 Postman을 통해서 확인 -> 성공
-
-코드 수정 방향:
-LoggedInUserHolder를 통해 사용자가 로그인을 하면 userId를 저장해놓고 이 아이디를 통해 사용자 db를 조회하여 나온 스킨타입에 따른
-검색어를 올리브영 사이트에서 검색하여 productName과 imageUrl을 크롤링하여 프론트로 넘겨줌
+코드 수정 사항: 피부타입별 적절한 검색어 찾아서 SkinTypeSearchKeywords 코드 변경해야 함
  */
