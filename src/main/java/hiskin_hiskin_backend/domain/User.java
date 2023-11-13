@@ -33,6 +33,9 @@ public class User {
     @Column(name = "skinType", nullable = true) // null값 허용
     private String skinType;
 
+    @Column(name = "challengeScore", nullable = true) // null값 허용
+    private int challengeScore;
+
     @Builder
     public User(String name, String gender, String nickname, String userId, String password) {
         this.name = name;

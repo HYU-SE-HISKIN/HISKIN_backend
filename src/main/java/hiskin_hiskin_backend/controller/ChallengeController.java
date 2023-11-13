@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api")
 public class ChallengeController {
@@ -16,8 +19,13 @@ public class ChallengeController {
     private ChallengeService challengeService;
 
     @PostMapping("/challenge")
-    public ResponseEntity<String> calculateScore(@RequestBody ChallengeResponseDTO response) {
+    public ResponseEntity<Map<String, Object>> calculateScore(@RequestBody ChallengeResponseDTO response) {
         int totalScore = challengeService.calculateTotalScore(response);
-        return ResponseEntity.ok("Total Score: " + totalScore);
+        challengeService.saveChallengeScore(totalScore);
+
+        Map<String, Object> responseMap = new HashMap<>();
+        responseMap.put("totalScore", totalScore);
+
+        return ResponseEntity.ok(responseMap);
     }
 }

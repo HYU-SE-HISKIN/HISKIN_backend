@@ -17,4 +17,12 @@ public class UserService {
             userRepository.save(user);
         }
     }
+
+    public void updateChallengeScore(String userId, int challengeScore) {
+        User user = userRepository.findByUserId(userId);
+        if (user != null) {
+            user.setChallengeScore(challengeScore);
+            userRepository.save(user);
+        }
+    }
 }
