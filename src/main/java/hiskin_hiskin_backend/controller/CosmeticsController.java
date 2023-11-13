@@ -63,6 +63,5 @@ selenium 라이브러리 사용방법:
 1. 크롬 버전 확인
 2. 크롬 버전이랑 일치하는 크롬드라이버 설치
 3. 크롬드라이버를 static 파일에 넣고 그 경로를 CosmeticsCrawlerService 클래스 path에 입력
-
-코드 수정 사항: 피부타입별 적절한 검색어 찾아서 SkinTypeSearchKeywords 코드 변경해야 함
+(../ 으로 가능한지 알아보기)
  */
