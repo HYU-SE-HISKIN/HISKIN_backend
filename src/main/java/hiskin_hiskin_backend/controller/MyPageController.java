@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
-public class MyPage {
+public class MyPageController {
     @GetMapping("/my-page/three-months")
     public ResponseEntity<List<Integer>> getThreeMonthsChallengeScores() {
         List<Integer> challengeScores = ChallengeScoreGenerator.generateChallengeScores(6);
