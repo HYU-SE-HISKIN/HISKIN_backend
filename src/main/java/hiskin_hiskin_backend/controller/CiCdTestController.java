@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class CiCdTestController {
     @GetMapping("/test") // test
     public String test(){
-        return "성공했다";
+        return "성공했다!!";
     }
 }
