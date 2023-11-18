@@ -14,12 +14,13 @@ import java.util.Map;
 public class CosmeticsCrawlerService {
     public Map<String, String> scrapeProductInfo(String searchKeyword) {
         // Selenium WebDriver 설정
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\kim26\\hiskin_backend\\src\\main\\resources\\static\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "/home/ubuntu/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--port=12345"); // 12345 포트로 변경
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--disable-web-security");
         options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
         WebDriver driver = new ChromeDriver(options);
 
         Map<String, String> productInfo = null;
