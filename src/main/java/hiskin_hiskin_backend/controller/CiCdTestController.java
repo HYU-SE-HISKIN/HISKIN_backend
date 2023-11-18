@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class CiCdTestController {
-    @GetMapping("/test")
+    @GetMapping("/test") // test
     public String test(){
-        return "성공";
+        return "성공했다";
     }
 }
