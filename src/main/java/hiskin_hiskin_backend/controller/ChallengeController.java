@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api") // instance test
+@RequestMapping("/api")
 public class ChallengeController {
     @Autowired
     private ChallengeService challengeService;
