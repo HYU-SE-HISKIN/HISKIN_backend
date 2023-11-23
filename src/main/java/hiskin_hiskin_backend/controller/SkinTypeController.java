@@ -26,12 +26,8 @@ public class SkinTypeController {
         // 데이터베이스에서 사용자의 피부 타입을 검색합니다.
         String userSkinType = userService.getUserSkinType(loggedInUserId);
 
-        if (userSkinType != null) {
-            return ResponseEntity.ok()
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .body(userSkinType);
-        } else {
-            return new ResponseEntity<>("사용자의 피부 타입을 찾을 수 없습니다.", HttpStatus.NOT_FOUND);
-        }
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(userSkinType);
     }
 }
