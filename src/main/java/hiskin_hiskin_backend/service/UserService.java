@@ -18,6 +18,11 @@ public class UserService {
         }
     }
 
+    public String getUserSkinType(String userId) {
+        User user = userRepository.findByUserId(userId);
+        return user != null ? user.getSkinType() : null;
+    }
+
     public void updateChallengeScore(String userId, int challengeScore) {
         User user = userRepository.findByUserId(userId);
         if (user != null) {
