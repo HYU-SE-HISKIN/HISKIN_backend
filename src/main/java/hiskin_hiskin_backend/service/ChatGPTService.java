@@ -1,0 +1,84 @@
+package hiskin_hiskin_backend.service;
+
+
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+@Service
+public class ChatGPTService {
+
+    @Value("${openai.api-key}")
+    private String apiKey;
+
+    private static final String OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
+
+    private final RestTemplate restTemplate;
+
+    public ChatGPTService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    public String askChatGPT(String question) {
+        Map<String, Object> requestBodyMap = new LinkedHashMap<>();
+        requestBodyMap.put("model", "gpt-3.5-turbo");
+
+        List<Map<String, String>> messages = new ArrayList<>();
+        messages.add(Map.of("role", "system", "content", "You are a helpful assistant."));
+        messages.add(Map.of("role", "user", "content", "User: " + question));
+
+        requestBodyMap.put("messages", messages);
+
+        // Converting the request body map to JSON string
+        try {
+            String requestBody = new ObjectMapper().writeValueAsString(requestBodyMap);
+
+            // Creating HTTP headers
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.setBearerAuth(apiKey);
+
+            // Creating the HTTP entity with the request body and headers
+            HttpEntity<String> requestEntity = new HttpEntity<>(requestBody, headers);
+
+            // Making the API call
+            String apiUrl = OPENAI_API_URL + "?temperature=0.7";
+
+            ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl, HttpMethod.POST, requestEntity, String.class);
+            String response = responseEntity.getBody();
+
+            // Extracting ChatGPT's reply from the response
+            String reply = extractChatGPTReply(response);
+            return reply;
+        } catch (JsonProcessingException e) {
+            // Handle JSON processing exception
+            e.printStackTrace(); // or log the exception
+            return "Error: Failed to convert request body to JSON";
+        } catch (HttpClientErrorException e) {
+            // Handle HTTP client errors
+            return "Error: " + e.getRawStatusCode() + " - " + e.getResponseBodyAsString();
+        } catch (Exception e) {
+            // Handle other exceptions
+            return "Error: " + e.getMessage();
+        }
+    }
+
+    private String extractChatGPTReply(String response) {
+        // Extract the reply from the OpenAI API response
+        // Modify this based on the actual response format from OpenAI
+        // For example, if the response is in JSON format, you may need to parse it accordingly.
+        // This is just a simplified example.
+        return response;
+    }
+}
+

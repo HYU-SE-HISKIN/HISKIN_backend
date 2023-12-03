@@ -23,6 +23,7 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     implementation 'org.json:json:20230227'
     implementation 'org.seleniumhq.selenium:selenium-java:4.8.2'
+    implementation 'io.github.flashvayne:chatgpt-spring-boot-starter:1.0.4'
 
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
