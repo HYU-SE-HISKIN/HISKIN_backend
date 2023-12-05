@@ -10,4 +10,4 @@ spring:
   hibernate:
     ddl-auto: update
 openai:
-  api-key: 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
+  api-key:

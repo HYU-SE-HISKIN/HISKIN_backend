@@ -29,7 +29,7 @@ public class ChatGPTService {
         this.restTemplate = restTemplate;
     }
 
-    public String askChatGPT(String question) {
+    public ResponseEntity<String> askChatGPT(String question) {
         Map<String, Object> requestBodyMap = new LinkedHashMap<>();
         requestBodyMap.put("model", "gpt-3.5-turbo");
 
@@ -57,19 +57,18 @@ public class ChatGPTService {
             ResponseEntity<String> responseEntity = restTemplate.exchange(apiUrl, HttpMethod.POST, requestEntity, String.class);
             String response = responseEntity.getBody();
 
-            // Extracting ChatGPT's reply from the response
-            String reply = extractChatGPTReply(response);
-            return reply;
+            // 여기에서 응답을 추출하는 대신 ResponseEntity를 그대로 반환
+            return responseEntity;
         } catch (JsonProcessingException e) {
-            // Handle JSON processing exception
-            e.printStackTrace(); // or log the exception
-            return "Error: Failed to convert request body to JSON";
+            // JSON 처리 예외 처리
+            e.printStackTrace(); // 또는 예외를 로깅
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("오류: JSON 형식으로 요청 변환 실패");
         } catch (HttpClientErrorException e) {
-            // Handle HTTP client errors
-            return "Error: " + e.getRawStatusCode() + " - " + e.getResponseBodyAsString();
+            // HTTP 클라이언트 오류 처리
+            return ResponseEntity.status(e.getRawStatusCode()).body("오류: " + e.getResponseBodyAsString());
         } catch (Exception e) {
-            // Handle other exceptions
-            return "Error: " + e.getMessage();
+            // 기타 예외 처리
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("오류: " + e.getMessage());
         }
     }
 
@@ -81,4 +80,3 @@ public class ChatGPTService {
         return response;
     }
 }
-
