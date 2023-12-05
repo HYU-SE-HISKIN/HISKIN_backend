@@ -66,6 +66,6 @@ jobs:
       # (7) 애플리케이션 실행 시에 환경 변수로 OpenAI API 키 전달
       - name: Run the application
         run: |
-          java -jar your-application.jar
+          java -jar build/libs/hiskin_backend-1.0-SNAPSHOT.jar
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
