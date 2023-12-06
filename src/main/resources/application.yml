@@ -9,3 +9,5 @@ spring:
     password: password
   hibernate:
     ddl-auto: update
+openai:
+  api-key: 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
