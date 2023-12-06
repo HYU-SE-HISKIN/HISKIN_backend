@@ -9,5 +9,3 @@ spring:
     password: password
   hibernate:
     ddl-auto: update
-openai:
-  api-key: ${OpenAIKey}

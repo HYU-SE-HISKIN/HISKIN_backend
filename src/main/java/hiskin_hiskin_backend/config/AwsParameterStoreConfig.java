@@ -9,7 +9,7 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.ssm.SsmClient;
 import software.amazon.awssdk.services.ssm.model.GetParameterRequest;
 
-
+/*
 @Configuration
 public class AwsParameterStoreConfig {
     @Value("${OpenAIKey}")
@@ -32,3 +32,5 @@ public class AwsParameterStoreConfig {
         return ssmClient.getParameter(parameterRequest).parameter().value();
     }
 }
+
+ */

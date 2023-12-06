@@ -3,7 +3,7 @@ package hiskin_hiskin_backend.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hiskin_hiskin_backend.dto.ChatRequest;
-import hiskin_hiskin_backend.service.ChatGPTService;
+//import hiskin_hiskin_backend.service.ChatGPTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
-
+/*
 @RestController
 @RequestMapping("/api")
 public class ChatGPTController {
@@ -82,3 +82,5 @@ public class ChatGPTController {
         return jsonResponse;
     }
 }
+
+ */
