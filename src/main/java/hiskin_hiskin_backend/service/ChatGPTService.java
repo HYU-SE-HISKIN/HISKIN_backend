@@ -18,15 +18,15 @@ import java.util.Map;
 @Service
 public class ChatGPTService {
 
-    @Value("${openai.api-key}")
-    private String apiKey;
+    private final String apiKey;
 
     private static final String OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
 
     private final RestTemplate restTemplate;
 
-    public ChatGPTService(RestTemplate restTemplate) {
+    public ChatGPTService(RestTemplate restTemplate, @Value("${openai.api-key}") String apiKey) {
         this.restTemplate = restTemplate;
+        this.apiKey = apiKey;
     }
 
     public ResponseEntity<String> askChatGPT(String question) {
