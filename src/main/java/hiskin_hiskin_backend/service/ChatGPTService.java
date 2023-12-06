@@ -18,6 +18,7 @@ import java.util.Map;
 @Service
 public class ChatGPTService {
 
+    // 환경변수 설정 후 진행
     @Value("${OPENAI_API_KEY}")
     private String apiKey;
 
