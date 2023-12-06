@@ -1,5 +1,5 @@
 package hiskin_hiskin_backend.controller;
-
+/*
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hiskin_hiskin_backend.dto.ChatRequest;
@@ -82,3 +82,5 @@ public class ChatGPTController {
         return jsonResponse;
     }
 }
+
+ */

@@ -1,6 +1,6 @@
 package hiskin_hiskin_backend.service;
 
-
+/*
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -73,3 +73,5 @@ public class ChatGPTService {
         }
     }
 }
+
+ */
