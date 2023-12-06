@@ -24,10 +24,6 @@ dependencies {
     implementation 'org.json:json:20230227'
     implementation 'org.seleniumhq.selenium:selenium-java:4.8.2'
     implementation 'io.github.flashvayne:chatgpt-spring-boot-starter:1.0.4'
-    implementation platform('software.amazon.awssdk:bom:2.20.56')
-    implementation platform('com.amazonaws:aws-java-sdk-bom:1.12.529')
-    implementation 'software.amazon.awssdk:ssm'
-
 
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

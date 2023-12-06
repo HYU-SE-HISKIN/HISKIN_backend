@@ -14,19 +14,19 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-/*
+
 @Service
 public class ChatGPTService {
 
-    private final String apiKey;
+    @Value("${openai.api-key}")
+    private String apiKey;
 
     private static final String OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
 
     private final RestTemplate restTemplate;
 
-    public ChatGPTService(RestTemplate restTemplate, @Value("${openai.api-key}") String apiKey) {
+    public ChatGPTService(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
-        this.apiKey = apiKey;
     }
 
     public ResponseEntity<String> askChatGPT(String question) {
@@ -71,14 +71,4 @@ public class ChatGPTService {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("오류: " + e.getMessage());
         }
     }
-
-    private String extractChatGPTReply(String response) {
-        // Extract the reply from the OpenAI API response
-        // Modify this based on the actual response format from OpenAI
-        // For example, if the response is in JSON format, you may need to parse it accordingly.
-        // This is just a simplified example.
-        return response;
-    }
 }
-
- */
