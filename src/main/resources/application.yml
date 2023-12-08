@@ -9,9 +9,6 @@ spring:
     password: password
   hibernate:
     ddl-auto: update
-awsParameterStorePropertySource:
-  enabled: true
-my:
-  password: ${OpenAIKey}
+
 
 
