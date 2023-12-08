@@ -1,7 +1,6 @@
 package hiskin_hiskin_backend.service;
 
 /*
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +18,7 @@ import java.util.Map;
 public class ChatGPTService {
 
     // 환경변수 설정 후 진행
-    @Value("${OPENAI_API_KEY}")
+    @Value("${my.password}")
     private String apiKey;
 
     private static final String OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
@@ -73,5 +72,6 @@ public class ChatGPTService {
         }
     }
 }
+
 
  */

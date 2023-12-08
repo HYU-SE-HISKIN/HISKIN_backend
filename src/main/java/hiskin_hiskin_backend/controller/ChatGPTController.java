@@ -1,9 +1,9 @@
 package hiskin_hiskin_backend.controller;
-/*
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hiskin_hiskin_backend.dto.ChatRequest;
-import hiskin_hiskin_backend.service.ChatGPTService;
+//import hiskin_hiskin_backend.service.ChatGPTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +17,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api")
 public class ChatGPTController {
+    /*
     @Autowired
     private ChatGPTService chatGPTService;
     @Autowired
@@ -66,6 +67,8 @@ public class ChatGPTController {
         }
     }
 
+     */
+
     @PostMapping("/test")
     public Map<String, String> ask(@RequestBody Map<String, String> data) {
         // 프론트엔드가 "question" 필드를 가진 JSON 객체로 입력을 보낸다고 가정합니다.
@@ -82,5 +85,3 @@ public class ChatGPTController {
         return jsonResponse;
     }
 }
-
- */

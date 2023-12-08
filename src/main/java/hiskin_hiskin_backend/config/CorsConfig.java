@@ -12,7 +12,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Define the path pattern to which CORS should apply
-                        .allowedOrigins("http://localhost:8081") // Define the allowed origins
+                        .allowedOrigins("http://localhost:8081")
                         .allowedMethods("GET", "POST", "PUT", "DELETE") // Define the allowed HTTP methods
                         .allowCredentials(true); // Allow credentials (e.g., cookies)
             }
